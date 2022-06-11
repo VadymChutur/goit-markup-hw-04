@@ -15,6 +15,7 @@
   --six-background: rgba(47, 48, 58, 0.4);
   --seven-backgound: rgba(47, 48, 58, 0.8);
   --eight-background: rgba(33, 150, 243, 0.9);
+  --modal-background: rgba(0, 0, 0, 0.2);
   --first-margin: 50px;
   --second-margin: 30px;
   --third-margin: 10px;
@@ -108,8 +109,9 @@ body {
 }
 
 .current::after {
+  position: absolute;
   display: block;
-  transform: translateY(30px);
+  bottom: -32px;
   content: "";
   width: 100%;
   height: 4px;
@@ -160,6 +162,10 @@ body {
 
 .header-item + .header-item {
   margin-left: var(--first-margin);
+}
+
+.header-item {
+  position: relative;
 }
 
 .header-link:hover,
@@ -751,4 +757,24 @@ body {
 .portfolio-link:hover,
 .portfolio-link:focus {
   box-shadow: var(--box-shadow-second);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-background);
+
+  transition: opacity 250ms cubic-bezier(var(--cubic-bezier)),
+    visibility 250ms cubic-bezier(var(--cubic-bezier));
+}
+
+.backdrop .is-hidden .modal {
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
